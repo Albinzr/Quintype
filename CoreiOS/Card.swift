@@ -27,6 +27,7 @@ public class Card:SafeJsonObject  {
     //    public var subType:String!
     
     
+    
     override public func setValue(_ value: Any?, forKey key: String) {
         
         if key == "story_elements" {
