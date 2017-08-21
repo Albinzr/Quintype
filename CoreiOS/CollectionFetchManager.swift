@@ -14,8 +14,6 @@ open class CollectionFetchManager: NSObject {
     
     static var bulkNecessaryFields:Array<String> = ["id","headline","slug","url","hero-image-s3-key","hero-image-metadata","first-published-at","last-published-at","alternative","published-at","author-name","author-id","sections","story-template","summary","metadata"]
     
-    
-    
     var bulkLimit:Int = 5
     var keys:Dictionary<String, String> = [:]
     
