@@ -187,7 +187,6 @@ open class CollectionFetchManager: NSObject {
         }
     }
     
-    
     func bulkRequestMake(collectionItems:[CollectionItem], completion:@escaping (_ collections:[String:CollectionModel]) -> Void){
         
         let filteredCollections = collectionItems.filter({$0.type ?? "" == "collection"})
