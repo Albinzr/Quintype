@@ -26,8 +26,6 @@ open class CollectionFetchManager: NSObject {
     
     
     public init(slug:String, startImmediately:Bool,storyLimit:Int=4) {
-        
-        
         self.bulkLimit = storyLimit
         
         _slug = slug
