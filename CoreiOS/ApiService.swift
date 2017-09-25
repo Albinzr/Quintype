@@ -34,8 +34,14 @@ public class ApiService{
         }
     }
     
+    var entityManager:EntityManager = EntityManager.init(mapperPara: [:])
+    
     //MARK: - Default initilizer
     public init(){}
+    
+    open func setEntityManager(entityManagerPara:EntityManager){
+        entityManager = entityManagerPara
+    }
     
     //MARK:- Get publisher details -
     public func getPublisherConfig(cache:cacheOption,Success:@escaping (Config?)->(),Error:@escaping (String?)->()) {
@@ -244,7 +250,11 @@ public class ApiService{
             
             ApiParser.storyParser(data: data ,completion: { (storyObject) in
                 
-                DispatchQueue.main.async { Success(storyObject) }
+              //  DispatchQueue.main.async { Success(storyObject) }
+                
+                self.entityManager.getStoryEntitiesSerialized(story: storyObject, completion: { (storyd) in
+                    DispatchQueue.main.async { Success(storyObject) }
+                })
                 
             })
             
@@ -416,11 +426,12 @@ public class ApiService{
         
         api.call(method: "get", urlString: url, parameter: param,cache:cache, Success: { (data) in
             
-          ApiParser.collectionParser(data: data, completion: { (collectionObject) in
-            
-              DispatchQueue.main.async { Success(collectionObject) }
-            
-          })
+//          ApiParser.collectionParser(data: data, completion: { (collectionObject) in
+//            
+//              DispatchQueue.main.async { Success(collectionObject) }
+//            
+//          })
+            Success(data)
             
         }) { (err) in
             

@@ -8,8 +8,8 @@
 
 protocol Completion{
     func finished()
+    
 }
-
 
 import Foundation
 import SystemConfiguration
@@ -43,6 +43,7 @@ open class Quintype{
             return Quintype.sharedInstance._api!
         }
     }
+    
     
     open static var http:Http{
         get{
