@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+@objcMembers
 public class Story:SafeJsonObject {
     
     public var updated_at: NSNumber?
@@ -53,7 +53,7 @@ public class Story:SafeJsonObject {
     
     
     
-    override public func setValue(_ value: Any?, forKey key: String) {
+override public func setValue(_ value: Any?, forKey key: String) {
         
         if key == "sections" {
             

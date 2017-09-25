@@ -109,7 +109,7 @@ public class Http{
         URLSession.shared.dataTask(with: url as URLRequest) { (data, response, error) in
             
             #if DEBUG
-                if let data = data,let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {  }
+                if let data = data,let _ = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {  }
             #endif
             
             if error != nil {
@@ -224,7 +224,7 @@ public class Http{
             cacheTime = 0
         }
         
-        var url = createUrlFromParameter(method: method, urlString: urlString, param: parameter)
+        let url = createUrlFromParameter(method: method, urlString: urlString, param: parameter)
         
         if Http.isInternetAvailable(){
             

@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         Quintype.initWithBaseUrl(baseURL: "https://www.thequint.com")
-        
+	
         initCollectionCall(stack: "home",deepDive: 4)
         
     }
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
             
             var outerDict:[String:[String:Any]] = [:]
             
-            for (index,collection) in collections.enumerated(){
+            for (_,collection) in collections.enumerated(){
                 
                 var innerDict:[String:Any] = [:]
                 
@@ -72,12 +72,12 @@ class ViewController: UIViewController {
                     innerDict["_type"] = collection.type ?? ""
                     
                     outerDict[collection.slug ?? ""] = innerDict
-                    print(collection.name)
+                    
                     
                 }else if collection.type == collectionTypes.story.rawValue{
                     
                     
-                    if storyCollection[collection.name!] == nil {
+                    if storyCollection[collection.name ?? ""] == nil {
                         
                         storyCollection[collection.name!] = [collection.story!]
                         
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
                     return
                 }
                 
-                var mergedCollection:CollectionModel = CollectionModel()
+                let mergedCollection:CollectionModel = CollectionModel()
                 
                 for (_,value) in Array(results.values).enumerated(){
                     
@@ -161,10 +161,6 @@ class ViewController: UIViewController {
             }, Error: { (error) in print("error from collection bulk call")})
             
         }
-//        else{
-//            print(storyCollection)
-//            return
-//        }
         
     }
     

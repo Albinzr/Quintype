@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 open class CollectionModel: SafeJsonObject {
     
     public var id:NSNumber?
