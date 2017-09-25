@@ -159,7 +159,7 @@ override public func setValue(_ value: Any?, forKey key: String) {
                 for (_,object) in valued.enumerated(){
                     if let innerObject = object.value as? [String:AnyObject]{
                          let linkedObject = LinkedStory()
-                         linkedObject.setValuesForKeys(innerObject as! [String:AnyObject])
+                         linkedObject.setValuesForKeys(innerObject)
                          linkedObjectMap[object.key] = linkedObject
                     }
                 }

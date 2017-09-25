@@ -8,8 +8,6 @@
 
 import UIKit
 import Foundation
-import Quintype
-
 open class CollectionFetchManager: NSObject {
     
     static var bulkNecessaryFields:Array<String> = ["id","headline","slug","url","hero-image-s3-key","hero-image-metadata","first-published-at","last-published-at","alternative","published-at","author-name","author-id","sections","story-template","summary","metadata"]

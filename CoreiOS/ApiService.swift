@@ -426,10 +426,10 @@ public class ApiService{
         
         api.call(method: "get", urlString: url, parameter: param,cache:cache, Success: { (data) in
             
-//          ApiParser.collectionParser(data: data, completion: { (collectionObject) in
-//            
+//          ApiParser.collectionParser(data: data, completion: { (collectionObject,_) in
+//
 //              DispatchQueue.main.async { Success(collectionObject) }
-//            
+//
 //          })
             Success(data)
             

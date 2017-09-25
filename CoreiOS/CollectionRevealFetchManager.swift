@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Quintype
 
 open class CollectionRevealFetchManager: NSObject {
     

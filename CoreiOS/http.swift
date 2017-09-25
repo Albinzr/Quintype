@@ -14,7 +14,7 @@ public class Http{
     
     var cacheKey:String?
     
-    static let sharedInstance = Http()
+   open static let sharedInstance = Http()
     let defaults = UserDefaults.standard
     
     public class func isInternetAvailable() -> Bool {

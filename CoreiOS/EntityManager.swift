@@ -33,9 +33,9 @@ public class EntityManager:NSObject{
         
         var cardIDEntityIDMapping:[Int:String] = [:]
         
-        filteredCards.map { (card) -> Card in
+       _ = filteredCards.map { (card) -> Card in
             let storyAttributes = card.metadata!.storyAttributes!
-            for (key, value) in storyAttributes{
+            for (_, value) in storyAttributes{
                 if let keyValueAttribute = value as? [AnyObject]{
                     for object in keyValueAttribute{
                         let id = object["id"] as! NSNumber
@@ -76,7 +76,7 @@ public class EntityManager:NSObject{
         guard let storyAttributes = metadata.story_attributes else{return storyObject}
         guard let linkedEntties = storyObject.linked_entities else{return storyObject}
         
-        for (key, attr) in storyAttributes{
+        for (_, attr) in storyAttributes{
             if let entityArray = attr as? [[String:AnyObject]]{
                 for entityAttr in entityArray{
                     let id = (entityAttr["id"] as! NSNumber).intValue
@@ -129,12 +129,12 @@ public class EntityManager:NSObject{
     }
     
     fileprivate func modelEntityWithJSONObject(object:[String:AnyObject]) -> Entity?{
-        if let entityModel:Entity = try? unbox(dictionary: object as! [String:AnyObject]){
+        if let entityModel:Entity = try? unbox(dictionary: object){
             
             let type = entityModel.type
             
             if let mappingExist = self.mapper[type!]{
-                if let actualModel = try? mappingExist.init(unboxer: Unboxer.init(dictionary: object as! [String:AnyObject])){
+                if let actualModel = try? mappingExist.init(unboxer: Unboxer.init(dictionary: object )){
                    return actualModel
                 }
                 else{
@@ -152,9 +152,10 @@ public class EntityManager:NSObject{
     
     
     public func getEntities(ids:[Int], endpoint:String? = nil, completion: @escaping (_ data:[AnyObject]) -> Void){
-        var allIds = ids.map({"\($0)"}).joined(separator: ",") as NSString
+        let allIds = ids.map({"\($0)"}).joined(separator: ",") as NSString
         
-        var endPointURL = endpoint ?? (Constants.urlConfig.getBaseUrl() + Constants.urlConfig.entityBulkURL)
+        let endPointURL = endpoint ?? (Constants.urlConfig.getBaseUrl() + Constants.urlConfig.entityBulkURL)
+        
         self.httpInstance.call(method: "get", urlString: endPointURL, parameter: ["ids":allIds], cache: cacheOption.none, Success: { (result) in
             if let entityArray = result?["result"] as? [AnyObject]{
                 completion(entityArray)
